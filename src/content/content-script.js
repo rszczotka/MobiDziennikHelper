@@ -989,7 +989,25 @@ function showMultipleSimulatedGradesOnGraph(graphContainer, currentAverage, newA
     if (!svg) return;
     
     const circles = svg.querySelectorAll('circle:not([data-simulation="true"])');
-    const realAverages = Array.from(circles).map(circle => parseFloat(circle.getAttribute('cy')) || currentAverage);
+    
+    // Store the original Y positions and averages from the circles if not already stored
+    circles.forEach(circle => {
+        if (!circle.hasAttribute('data-original-cy')) {
+            circle.setAttribute('data-original-cy', circle.getAttribute('cy'));
+        }
+        if (!circle.hasAttribute('data-original-average')) {
+            // Get the average value from the y position
+            const cy = parseFloat(circle.getAttribute('cy'));
+            const minAverage = parseFloat(svg.getAttribute('data-min-average'));
+            const maxAverage = parseFloat(svg.getAttribute('data-max-average'));
+            const range = maxAverage - minAverage;
+            const average = minAverage + ((180 - cy) / 160) * range;
+            circle.setAttribute('data-original-average', average);
+        }
+    });
+    
+    const realAverages = Array.from(circles).map(circle => 
+        parseFloat(circle.getAttribute('data-original-average')));
     
     let runningWeightedValue = initialWeightedValue;
     let runningWeight = initialWeight;
@@ -1040,12 +1058,12 @@ function showMultipleSimulatedGradesOnGraph(graphContainer, currentAverage, newA
     const realPointsCount = circles.length;
     const totalPointsCount = realPointsCount + simulatedGrades.length;
     const maxWidth = Math.min(620, svg.getBoundingClientRect().width * 0.85);
-    const pointSpacing = maxWidth / (totalPointsCount - 1);
+    const pointSpacing = maxWidth / (totalPointsCount - 1 || 1); // Avoid division by zero
     
     const averageEvolution = [];
     circles.forEach((circle, index) => {
         const pointIndex = parseInt(circle.getAttribute('data-index') || '0');
-        const pointAverage = parseFloat(circle.getAttribute('data-original-average') || currentAverage);
+        const pointAverage = parseFloat(circle.getAttribute('data-original-average'));
         averageEvolution[pointIndex] = pointAverage;
         
         const x = 30 + (index * pointSpacing);
@@ -1053,10 +1071,9 @@ function showMultipleSimulatedGradesOnGraph(graphContainer, currentAverage, newA
         
         circle.setAttribute('cx', x);
         circle.setAttribute('cy', y);
-        circle.setAttribute('data-original-average', pointAverage);
     });
     
-    const realLines = svg.querySelectorAll('line:not([data-simulation="true"])');
+    const realLines = svg.querySelectorAll('line:not([data-simulation="true"])[data-start-index]');
     realLines.forEach((line) => {
         const startIndex = parseInt(line.getAttribute('data-start-index') || '0');
         const endIndex = parseInt(line.getAttribute('data-end-index') || '0');
