@@ -1,15 +1,15 @@
-# Kalkulator Średniej Ocen
+# Kalkulator Średniej Ocen dla Mobidziennik
 
 ## Opis
-Kalkulator Średniej Ocen to rozszerzenie do przeglądarki, które automatycznie oblicza średnie ocen w dzienniku elektronicznym Mobidziennik. Rozszerzenie dodaje wiele przydatnych funkcji, które pomogą Ci na bieżąco monitorować swoje postępy w nauce.
+Kalkulator Średniej Ocen to rozszerzenie do przeglądarki, które automatycznie oblicza średnie ocen w dzienniku elektronicznym Mobidziennik. Rozszerzenie dodaje funkcje wyświetlania średniej dla każdego przedmiotu, średniej ogólnej, wykresów zmian ocen w czasie oraz symulacji wpływu nowych ocen na średnią.
 
 ## Funkcje
-- **Automatyczne obliczanie średnich**: Natychmiastowe obliczanie średniej dla każdego przedmiotu
-- **Średnia ogólna**: Kalkulacja średniej ze wszystkich przedmiotów
-- **Interaktywne wykresy**: Wizualizacja zmian średniej w czasie
-- **Symulacja ocen**: Możliwość sprawdzenia jak potencjalne oceny wpłyną na średnią
-- **Intuicyjny interfejs**: Przejrzyste, kolorowe oznaczenia wzrostu i spadku średniej
-- **Szybkie odświeżanie**: Aktualizacja wyników po dodaniu nowych ocen
+- **Automatyczne obliczanie średnich** - Natychmiastowe obliczanie średniej ważonej dla każdego przedmiotu
+- **Średnia ogólna** - Kalkulacja i wyświetlanie średniej ze wszystkich przedmiotów na dole strony
+- **Interaktywne wykresy** - Wizualizacja zmian średniej w czasie z kolorowymi oznaczeniami wzrostu i spadku
+- **Symulacja ocen** - Możliwość sprawdzenia jak potencjalne oceny wpłyną na średnią
+- **Intuicyjny interfejs** - Przejrzyste, kolorowe oznaczenia wzrostu i spadku średniej
+- **Dynamiczne odświeżanie** - Automatyczna aktualizacja po dodaniu nowych ocen
 
 ## Instalacja
 
@@ -31,7 +31,28 @@ Kalkulator Średniej Ocen to rozszerzenie do przeglądarki, które automatycznie
 2. Przejdź do strony z ocenami
 3. Rozszerzenie automatycznie obliczy i wyświetli średnie dla każdego przedmiotu
 4. Kliknij przycisk "+" przy przedmiocie, aby symulować nowe oceny
-5. Kliknij przycisk "Wykres" aby zobaczyć graficzną reprezentację zmian średniej
+5. Kliknij przycisk "Wykres" aby zobaczyć graficzną reprezentację zmian średniej w czasie
+6. Na dole strony pojawi się panel z ogólną średnią ze wszystkich przedmiotów
+
+### Funkcja wykresu
+- Wykres pokazuje zmianę średniej w czasie po każdej dodanej ocenie
+- Zielona linia oznacza wzrost średniej, czerwona spadek, niebieska brak zmiany
+- Najedź kursorem na punkt wykresu, aby zobaczyć szczegóły oceny i średniej
+- Najedź kursorem na linię wykresu, aby zobaczyć zmianę średniej między ocenami
+
+### Funkcja symulacji ocen
+- Wybierz ocenę i jej wagę w panelu symulacji
+- Kliknij "Oblicz" aby sprawdzić potencjalny wpływ oceny na średnią
+- Kliknij "Dodaj do wykresu" aby dodać symulowaną ocenę do wykresu
+- Możesz dodać wiele symulowanych ocen i obserwować zmiany na wykresie
+- Kliknij "Wyczyść" aby usunąć wszystkie symulowane oceny
+
+## Planowane funkcje
+- **Eksport danych** - Możliwość zapisania wyników i wykresów do PDF lub obrazu
+- **Cele edukacyjne** - Ustawianie celów dla średnich i śledzenie postępów
+- **Tryb ciemny** - Alternatywny schemat kolorów dla interfejsu
+- **Dodatkowe statystyki** - Rozszerzone analizy wyników, w tym trendy długoterminowe
+- **Powiadomienia** - Opcjonalne alerty o nowych ocenach i ich wpływie na średnią
 
 ## Prywatność
 Rozszerzenie działa całkowicie lokalnie w przeglądarce i nie przesyła żadnych danych na zewnętrzne serwery. Wszystkie obliczenia są wykonywane na Twoim urządzeniu.
@@ -42,9 +63,9 @@ Rozszerzenie działa całkowicie lokalnie w przeglądarce i nie przesyła żadny
 
 ## Dla deweloperów
 Projekt wykorzystuje:
-- JavaScript
-- HTML/CSS
-- Chart.js do wizualizacji
+- JavaScript (vanilla)
+- SVG dla wizualizacji wykresów (bez zewnętrznych bibliotek)
+- WebExtension API
 
 ### Struktura projektu
 ```

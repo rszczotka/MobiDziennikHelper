@@ -360,7 +360,7 @@ function addGraphUI(row, subjectName, gradeEntries) {
         gridLine.setAttribute('y1', y);
         gridLine.setAttribute('x2', '96%');
         gridLine.setAttribute('y2', y);
-        gridLine.setAttribute('stroke', '#ddd');
+        gridLine.setAttribute('stroke', '#ccc'); // Zmiana z #ddd na #ccc dla lepszej widoczności
         gridLine.setAttribute('stroke-width', '1');
         graphSvg.appendChild(gridLine);
         
@@ -1042,7 +1042,7 @@ function showMultipleSimulatedGradesOnGraph(graphContainer, currentAverage, newA
         gridLine.setAttribute('y1', y);
         gridLine.setAttribute('x2', '96%');
         gridLine.setAttribute('y2', y);
-        gridLine.setAttribute('stroke', '#ddd');
+        gridLine.setAttribute('stroke', '#ccc'); // Zmiana z #ddd na #ccc dla lepszej widoczności
         gridLine.setAttribute('stroke-width', '1');
         svg.appendChild(gridLine);
         
